@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Photo Randomizer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: greenyellow;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    #photo-container {
+      margin: 20px;
+      width: 300px;
+      height: 300px;
+      border: 2px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Frickandmorty.fandom.com%2Fwiki%2FPortal_Technology&psig=AOvVaw01p6V0ysMEKygpnXoqfiH0&ust=1758185534675000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCIjJ4vm1348DFQAAAAAdAAAAABAE');
+      background-size: cover;
+      background-position: center;
+    }
+
+    #photo-container img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      transition: opacity 0.5s ease-in-out;
+      opacity: 1;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Click to see which character you are!</h1>
+
+  <div id="photo-container">
+    <img id="random-photo" src="" alt="Random Photo" />
+  </div>
+
+  <button onclick="showRandomPhoto()">Show Character</button>
+
+  <script>
+    const photoUrls = [
+      "img/1.jpg",
+      "img/2.jpg",
+      "img/3.jpg",
+      "img/4.jpg",
+    ];
+
+    // Preload images
+    photoUrls.forEach((url) => {
+      const img = new Image();
+      img.src = url;
+    });
+
+    function showRandomPhoto() {
+      const photoElement = document.getElementById("random-photo");
+      photoElement.style.opacity = 0;
+
+      setTimeout(() => {
+        const randomIndex = Math.floor(Math.random() * photoUrls.length);
+        photoElement.src = photoUrls[randomIndex];
+        photoElement.style.opacity = 1;
+      }, 300);
+    }
+  </script>
+
+</body>
+</html>
